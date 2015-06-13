@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Form.create([
+  { form_title: 'My first form' },
+  { form_title: 'Form #2' }
+])
