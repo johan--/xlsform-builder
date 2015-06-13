@@ -1,1 +1,7 @@
 <p>Welcome to the XLSForm Builder!</p>
+
+<ul>
+<% @forms.each do |form| %>
+  <li><%= link_to form.form_title, form %></li>
+<% end %>
+</ul>
