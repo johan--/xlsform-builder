@@ -7,5 +7,7 @@
     <code><%= field.odk_type %></code>
     <br />
     <%= field.label %>
+    <br />
+    <%= link_to 'Delete', field_path(field), method: :delete %>
   </p>
 <% end %>
