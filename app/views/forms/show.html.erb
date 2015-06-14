@@ -1,1 +1,11 @@
 <h2><%= @form.form_title %></h2>
+
+<% @form.fields.each do |field| %>
+  <p>
+    <code><%= field.name %></code>
+    <br />
+    <code><%= field.odk_type %></code>
+    <br />
+    <%= field.label %>
+  </p>
+<% end %>
