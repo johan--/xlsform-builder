@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @forms = Form.all
+    @forms = Form.descending_update_time
   end
 end
