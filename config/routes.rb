@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  resources :forms, only: [:show, :new, :create, :destroy]
+  resources :forms, only: [:show, :new, :create, :destroy] do
+    resources :fields, only: [:new, :create]
+  end
   resources :fields, only: [:destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
