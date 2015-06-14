@@ -8,7 +8,7 @@
         <%= link_to form.form_title, form, class: "list-group-item" %>
       </div>
       <div class="col-md-1">
-        <%= link_to 'Delete', form_path(form), method: :delete, class: "btn btn-danger", role: :button %>
+        <%= link_to 'Delete', confirm_delete_form_path(form), class: "btn btn-danger", role: :button %>
       </div>
     </div>
   <% end %>

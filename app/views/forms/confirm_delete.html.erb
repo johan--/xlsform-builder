@@ -1,0 +1,10 @@
+<div class="jumbotron">
+  <h1>Hold up!</h1>
+  <p>Are you sure you want to delete</p>
+  <h2><%= @form.form_title %></h2>
+  <br />
+  <%= link_to 'Back to safety', root_path, class: "btn btn-success", role: :button %>
+  <br />
+  <br />
+  <%= link_to 'Delete', form_path(@form), method: :delete, class: "btn btn-danger", role: :button %>
+</div>
