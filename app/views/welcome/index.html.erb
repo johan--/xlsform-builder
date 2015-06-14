@@ -1,10 +1,15 @@
-<p><%= link_to 'Add a new form', new_form_path, class: "btn btn-primary btn-lg", role: :button %></p>
+<p><%= link_to 'Add a new form', new_form_path, class: "btn btn-success btn-lg", role: :button %></p>
 <br />
 
-<% @forms.each do |form| %>
-  <p>
-    <%= link_to form.form_title, form %>
-    <br />
-    <%= link_to 'Delete', form_path(form), method: :delete, data: {confirm: "Are you sure you want to delete\n\n#{form.form_title}"} %>
-  </p>
-<% end %>
+<div class="list-group">
+  <% @forms.each do |form| %>
+    <div class="row">
+      <div class="col-md-5">
+        <%= link_to form.form_title, form, class: "list-group-item" %>
+      </div>
+      <div class="col-md-1">
+        <%= link_to 'Delete', form_path(form), method: :delete, class: "btn btn-danger", role: :button %>
+      </div>
+    </div>
+  <% end %>
+</div>
