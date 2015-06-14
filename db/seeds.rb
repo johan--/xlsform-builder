@@ -6,7 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Form.create([
-  { form_title: 'My first form' },
-  { form_title: 'Form #2' }
+form = Form.create form_title: 'My first form'
+form.fields = Field.create([
+  {
+    odk_type: 'text',
+    name: 'some_text',
+    label: 'This is a basic fill in the blank question.'
+  },
+  {
+    odk_type: 'note',
+    name: 'my_note',
+    label: 'No user input: explanation only.'
+  }
 ])
+
+Form.create form_title: 'Form #2'
