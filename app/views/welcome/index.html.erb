@@ -1,3 +1,5 @@
+<p><%= link_to 'Add a new form', new_form_path %></p>
+
 <ul>
 <% @forms.each do |form| %>
   <li><%= link_to form.form_title, form %></li>

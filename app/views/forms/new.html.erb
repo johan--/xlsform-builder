@@ -1,0 +1,20 @@
+<% if @form.errors.any? %>
+  <h2>Invalid XLSForm</h2>
+  <ul>
+    <% @form.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  <ul>
+<% end %>
+
+<%= form_for @form do |helper| %>
+  <fieldset>
+    <% @attributes.each do |attrib| %>
+      <div class="fields">
+        <%= helper.label attrib %>
+        <%= helper.text_field attrib %>
+      </div>
+    <% end %>
+  </fieldset>
+  <%= helper.submit %>
+<% end %>
