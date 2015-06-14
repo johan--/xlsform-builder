@@ -8,13 +8,17 @@
 <% end %>
 
 <%= form_for @form do |helper| %>
-  <fieldset>
+  <div class="form-group">
     <% @attributes.each do |attrib| %>
       <div class="fields">
         <%= helper.label attrib %>
-        <%= helper.text_field attrib %>
+        <div class="row">
+          <div class="col-md-5">
+            <%= helper.text_field attrib, class: "form-control" %>
+          </div>
+        </div>
       </div>
     <% end %>
-  </fieldset>
-  <%= helper.submit %>
+  </div>
+  <%= helper.submit 'Add form', class: "btn btn-success" %>
 <% end %>
