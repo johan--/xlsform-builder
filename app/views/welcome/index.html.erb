@@ -1,7 +1,9 @@
 <p><%= link_to 'Add a new form', new_form_path %></p>
 
-<ul>
 <% @forms.each do |form| %>
-  <li><%= link_to form.form_title, form %></li>
+  <p>
+    <%= link_to form.form_title, form %>
+    <br />
+    <%= link_to 'Delete', form_path(form), method: :delete, data: {confirm: "Are you sure you want to delete\n\n#{form.form_title}"} %>
+  </p>
 <% end %>
-</ul>

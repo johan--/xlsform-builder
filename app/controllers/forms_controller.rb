@@ -1,9 +1,7 @@
 class FormsController < ApplicationController
-  EDITABLE_ATTRIBUTES = [:form_title]
+  before_action :set_form, only: [:show, :destroy]
 
-  def show
-    @form = Form.find(params[:id])
-  end
+  EDITABLE_ATTRIBUTES = [:form_title]
 
   # Initialize a form for creating a new XLSForm.
   private def init_form_form(form)
@@ -23,6 +21,15 @@ class FormsController < ApplicationController
       init_form_form form
       render 'new'
     end
+  end
+
+  def destroy
+    @form.destroy
+    redirect_to root_path
+  end
+
+  private def set_form
+    @form = Form.find(params[:id])
   end
 
   private def safe_params
