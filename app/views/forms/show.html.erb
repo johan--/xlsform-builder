@@ -1,1 +1,15 @@
-<h2><%= @form.form_title %></h2>
+<%= render 'form_title' %>
+
+<p><%= link_to 'Add a new field', new_form_field_path(@form) %></p>
+
+<% @form.fields.each do |field| %>
+  <p>
+    <code><%= field.name %></code>
+    <br />
+    <code><%= field.odk_type %></code>
+    <br />
+    <%= field.label %>
+    <br />
+    <%= link_to 'Delete', field_path(field), method: :delete %>
+  </p>
+<% end %>

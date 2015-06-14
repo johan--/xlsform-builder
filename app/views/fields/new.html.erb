@@ -1,0 +1,23 @@
+<%= render partial: 'forms/form_title' %>
+
+<% if @field.errors.any? %>
+  <h3>Invalid field</h2>
+  <ul>
+    <% FormBuilder::Errors.new(@field.errors).each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  <ul>
+<% end %>
+
+<%= form_for [:form, @field] do |helper| %>
+  <fieldset>
+    <% [:name, :odk_type, :label].each do |attrib| %>
+      <div class="fields">
+        <% label = attrib == :odk_type ? 'Type' : attrib.capitalize %>
+        <%= helper.label attrib, label %>
+        <%= helper.text_field attrib %>
+      </div>
+    <% end %>
+  </fieldset>
+  <%= helper.submit %>
+<% end %>
