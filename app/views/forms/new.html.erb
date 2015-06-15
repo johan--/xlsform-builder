@@ -1,11 +1,4 @@
-<% if @form.errors.any? %>
-  <h3>Invalid XLSForm</h2>
-  <ul>
-    <% @form.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  <ul>
-<% end %>
+<%= render partial: 'shared/form_errors', locals: {target: @form} %>
 
 <%= form_for @form do |helper| %>
   <div class="form-group">

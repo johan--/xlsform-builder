@@ -1,4 +1,4 @@
-class Form < ActiveRecord::Base
+class Form < FormBuilder::Model
   has_many :fields
 
   validates :form_title, presence: true

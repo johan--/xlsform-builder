@@ -1,4 +1,4 @@
-class Field < ActiveRecord::Base
+class Field < FormBuilder::Model
   ODK_TYPES = Set.new(['note', 'text'])
 
   belongs_to :form
