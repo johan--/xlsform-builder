@@ -13,5 +13,5 @@
       </div>
     <% end %>
   </div>
-  <%= helper.submit 'Add form', class: "btn btn-success" %>
+  <%= render partial: 'shared/form_submit', locals: {form: helper, target: @form} %>
 <% end %>
