@@ -1,9 +1,14 @@
+<%#
+Local variables
+---------------
+target: record for which to show errors
+%>
 <% if target.errors.any? %>
   <div class="panel panel-danger">
     <div class="panel-heading">Invalid <%= target.class.human_name %></div>
     <div class="panel-body">
       <ul>
-        <% FormBuilder::Errors.new(target.errors).each do |error| %>
+        <% FormBuilder::Errors.new(target).each do |error| %>
           <li><%= error %></li>
         <% end %>
       <ul>

@@ -1,23 +1,21 @@
 <%= render partial: 'forms/form_title' %>
-
-<% if @field.errors.any? %>
-  <h3>Invalid field</h2>
-  <ul>
-    <% FormBuilder::Errors.new(@field.errors).each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  <ul>
-<% end %>
+<%= render partial: 'shared/webform/errors', locals: {target: @field} %>
 
 <%= form_for [:form, @field] do |helper| %>
-  <fieldset>
-    <% [:name, :odk_type, :label].each do |attrib| %>
-      <div class="fields">
-        <% label = attrib == :odk_type ? 'Type' : attrib.capitalize %>
-        <%= helper.label attrib, label %>
-        <%= helper.text_field attrib %>
-      </div>
-    <% end %>
-  </fieldset>
-  <%= helper.submit %>
+  <%= render partial: 'shared/webform/text_field', locals: {
+    form: helper,
+    attribute: :name,
+    columns: 4
+  } %>
+  <%= render partial: 'shared/webform/select_one_field', locals: {
+    form: helper,
+    attribute: :odk_type,
+    choices: Field::TYPES,
+    columns: 2
+  } %>
+  <%= render partial: 'shared/webform/text_area', locals: {
+    form: helper,
+    attribute: :label
+  } %>
+  <%= render partial: 'shared/webform/submit', locals: {form: helper} %>
 <% end %>

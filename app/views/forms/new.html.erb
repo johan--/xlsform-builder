@@ -1,17 +1,12 @@
-<%= render partial: 'shared/form_errors', locals: {target: @form} %>
+<%= render partial: 'shared/webform/errors', locals: {target: @form} %>
 
 <%= form_for @form do |helper| %>
-  <div class="form-group">
-    <% @attributes.each do |attrib| %>
-      <div class="fields">
-        <%= helper.label attrib %>
-        <div class="row">
-          <div class="col-md-5">
-            <%= helper.text_field attrib, class: "form-control" %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <%= render partial: 'shared/form_submit', locals: {form: helper, target: @form} %>
+  <% @attributes.each do |attrib| %>
+    <%= render partial: 'shared/webform/text_field', locals: {
+      form: helper,
+      attribute: attrib,
+      columns: Form::TITLE_COLUMNS
+    } %>
+  <% end %>
+  <%= render partial: 'shared/webform/submit', locals: {form: helper} %>
 <% end %>

@@ -4,4 +4,6 @@ class Form < FormBuilder::Model
   validates :form_title, presence: true
 
   scope :descending_update_time, -> { order(updated_at: :desc) }
+
+  TITLE_COLUMNS = 5
 end
