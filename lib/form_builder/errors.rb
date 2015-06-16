@@ -1,13 +1,11 @@
 class FormBuilder::Errors
   include Enumerable
 
-  def initialize(errors)
-    errors.is_a? ActiveModel::Errors or raise 'invalid errors argument'
-
+  def initialize(record)
     @errors = Set.new
-    errors.messages.each_pair do |attrib, messages|
+    record.errors.messages.each_pair do |attrib, messages|
       messages.each do |text|
-        @errors.add FormBuilder::Error.new(attrib, text)
+        @errors << FormBuilder::Error.new(record.class, attrib, text)
       end
     end
   end

@@ -1,0 +1,17 @@
+<%#
+Local variables
+---------------
+form: form_for helper
+attribute: attribute name
+field: the field itself (<input>, <select>, etc.)
+columns (optional): number of columns
+%>
+<div class="form-group">
+  <%= form.label attribute %>
+  <div class="row">
+    <% columns = 6 unless local_assigns.has_key?(:columns) %>
+    <div class="col-md-<%= columns %>">
+      <%= field %>
+    </div>
+  </div>
+</div>

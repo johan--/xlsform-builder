@@ -1,0 +1,9 @@
+<%#
+Local variables
+---------------
+Variables for the partial "field" except variable field
+rows (optional): rows of text area
+%>
+<% rows = 3 unless local_assigns.has_key? :rows %>
+<% field = form.text_area(attribute, rows: rows, class: "form-control") %>
+<%= render partial: 'shared/webform/field', locals: local_assigns.merge({field: field}) %>

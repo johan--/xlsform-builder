@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :forms, only: [:show, :new, :create, :destroy] do
     resources :fields, only: [:new, :create]
   end
+  get 'forms/:id/confirm-delete', to: 'forms#confirm_delete',
+    as: :confirm_delete_form
   resources :fields, only: [:destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
