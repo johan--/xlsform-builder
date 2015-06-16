@@ -1,8 +1,8 @@
 class FormBuilder::Error
-  attr :attribute
-  attr :text
+  attr :model, :attribute, :text
 
-  def initialize(attribute, text)
+  def initialize(model, attribute, text)
+    @model = model
     @attribute = attribute
     @text = text
   end
@@ -11,7 +11,7 @@ class FormBuilder::Error
     if text =~ /\A[A-Z]/
       text
     else
-      "#{attribute.to_s.tr('_', ' ').capitalize} #{text}"
+      "#{model.human_attribute_name(attribute)} #{text}"
     end
   end
 end

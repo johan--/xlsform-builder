@@ -1,0 +1,8 @@
+<%#
+Local variables
+---------------
+Variables for the partial "field" except variable field
+choices: <select> options
+%>
+<% field = form.select(attribute, choices, {include_blank: true}, prompt: 'Select one', class: "form-control") %>
+<%= render partial: 'shared/webform/field', locals: local_assigns.merge({field: field}) %>

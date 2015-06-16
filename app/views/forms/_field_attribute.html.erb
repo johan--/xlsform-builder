@@ -1,0 +1,19 @@
+<%#
+Local variables
+---------------
+field: Field object
+attribute: Field attribute name
+tag (optional): HTML tag in which to enclose the attribute value
+%>
+<li class="list-group-item list-group-item-info">
+  <%= field.class.human_attribute_name(attribute) %>
+</li>
+<li class="list-group-item">
+  <% html = FormBuilder::EscapedHTML.new(field.send(attribute)) %>
+  <% tag = local_assigns[:tag] %>
+  <% if tag.nil? %>
+    <%= html %>
+  <% else %>
+    <%= content_tag tag, html %>
+  <% end %>
+</li>
