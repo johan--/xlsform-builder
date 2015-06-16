@@ -11,9 +11,9 @@ tag (optional): HTML tag in which to enclose the attribute value
 <li class="list-group-item">
   <% html = FormBuilder::EscapedHTML.new(field.send(attribute)) %>
   <% tag = local_assigns[:tag] %>
-  <% if tag.nil? %>
-    <%= html %>
-  <% else %>
+  <% if tag %>
     <%= content_tag tag, html %>
+  <% else %>
+    <%= html %>
   <% end %>
 </li>
