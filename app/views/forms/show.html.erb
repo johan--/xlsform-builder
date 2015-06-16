@@ -1,6 +1,7 @@
 <%= render 'form_title' %>
 
 <p><%= link_to 'Add a new field', new_form_field_path(@form), class: "btn btn-success", role: :button %></p>
+<br />
 
 <% @form.fields.each do |field| %>
   <%= render partial: 'field', locals: {field: field} %>

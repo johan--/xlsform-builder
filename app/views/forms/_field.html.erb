@@ -3,12 +3,26 @@ Local variables
 ---------------
 field: Field object
 %>
-<p>
-  <code><%= field.name %></code>
-  <br />
-  <code><%= field.odk_type %></code>
-  <br />
-  <%= field.label %>
-  <br />
-  <%= link_to 'Delete', field_path(field), method: :delete %>
-</p>
+<div class="row">
+  <div class="col-md-9">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= field.name %></h3>
+      </div>
+      <ul class="list-group">
+        <%= render partial: 'field_attribute', locals: {
+          field: field,
+          attribute: :odk_type,
+          tag: :code
+        } %>
+        <%= render partial: 'field_attribute', locals: {
+          field: field,
+          attribute: :label
+        } %>
+        <li class="list-group-item">
+          <%= link_to 'Delete', field_path(field), method: :delete, class: "btn btn-danger", role: :button %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
