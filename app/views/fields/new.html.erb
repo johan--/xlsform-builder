@@ -1,21 +1,4 @@
-<%= render partial: 'forms/form_title' %>
-<%= render partial: 'shared/webform/errors', locals: {target: @field} %>
-
-<%= form_for [:form, @field] do |helper| %>
-  <%= render partial: 'shared/webform/text_field', locals: {
-    form: helper,
-    attribute: :name,
-    columns: 4
-  } %>
-  <%= render partial: 'shared/webform/select_one_field', locals: {
-    form: helper,
-    attribute: :odk_type,
-    choices: Field::TYPES,
-    columns: 2
-  } %>
-  <%= render partial: 'shared/webform/text_area', locals: {
-    form: helper,
-    attribute: :label
-  } %>
-  <%= render partial: 'shared/webform/submit', locals: {form: helper} %>
-<% end %>
+<%= render partial: 'form', locals: {
+  action: :create,
+  record: [:form, @field]
+} %>

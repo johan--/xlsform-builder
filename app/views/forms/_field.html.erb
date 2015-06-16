@@ -20,6 +20,8 @@ field: Field object
           attribute: :label
         } %>
         <li class="list-group-item">
+          <%= link_to 'Update', edit_field_path(field), class: "btn btn-warning", role: :button %>
+          <%= ('&nbsp;' * 3).html_safe %>
           <%= link_to 'Delete', field_path(field), method: :delete, class: "btn btn-danger", role: :button %>
         </li>
       </ul>

@@ -1,0 +1,30 @@
+<%#
+Local variables
+---------------
+action: :create or :update
+record: record to pass to form_for
+%>
+<%= render partial: 'forms/form_title', locals: {form: @field.form} %>
+<%= render partial: 'shared/webform/errors', locals: {target: @field} %>
+
+<%= form_for record do |helper| %>
+  <%= render partial: 'shared/webform/text_field', locals: {
+    form: helper,
+    attribute: :name,
+    columns: 4
+  } %>
+  <%= render partial: 'shared/webform/select_one_field', locals: {
+    form: helper,
+    attribute: :odk_type,
+    choices: Field::TYPES,
+    columns: 2
+  } %>
+  <%= render partial: 'shared/webform/text_area', locals: {
+    form: helper,
+    attribute: :label
+  } %>
+  <%= render partial: 'shared/webform/submit', locals: {
+    action: action,
+    form: helper
+  } %>
+<% end %>

@@ -1,22 +1,25 @@
 class FieldsController < ApplicationController
-  before_action :set_field, only: [:destroy]
-
-  private def init_webform(field)
-    @field = field
-    @form = field.form
-  end
+  before_action :set_field, only: [:edit, :update, :destroy]
 
   def new
-    init_webform Field.new(form_param)
+    @field = Field.new(form_param)
   end
 
   def create
-    field = Field.new(safe_params)
+    field = Field.new(safe_params.merge(form_param))
     if field.save
       redirect_to field.form
     else
-      init_webform field
+      @field = field
       render 'new'
+    end
+  end
+
+  def update
+    if @field.update(safe_params)
+      redirect_to @field.form
+    else
+      render 'edit'
     end
   end
 
@@ -37,6 +40,6 @@ class FieldsController < ApplicationController
   end
 
   def safe_params
-    params.require(:field).permit([:name, :odk_type, :label]).merge form_param
+    params.require(:field).permit([:name, :odk_type, :label])
   end
 end
