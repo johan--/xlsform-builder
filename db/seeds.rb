@@ -19,5 +19,3 @@ form.fields = Field.create([
     label: 'No user input: explanation only.'
   }
 ])
-
-Form.create form_title: 'Form #2'
