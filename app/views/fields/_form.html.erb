@@ -1,7 +1,13 @@
-<%= render partial: 'forms/form_title' %>
+<%#
+Local variables
+---------------
+action: :create or :update
+record: record to pass to form_for
+%>
+<%= render partial: 'forms/form_title', locals: {form: @field.form} %>
 <%= render partial: 'shared/webform/errors', locals: {target: @field} %>
 
-<%= form_for [:form, @field] do |helper| %>
+<%= form_for record do |helper| %>
   <%= render partial: 'shared/webform/text_field', locals: {
     form: helper,
     attribute: :name,
@@ -17,5 +23,8 @@
     form: helper,
     attribute: :label
   } %>
-  <%= render partial: 'shared/webform/submit', locals: {form: helper} %>
+  <%= render partial: 'shared/webform/submit', locals: {
+    action: action,
+    form: helper
+  } %>
 <% end %>

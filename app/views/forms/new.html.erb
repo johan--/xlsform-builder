@@ -8,5 +8,8 @@
       columns: Form::TITLE_COLUMNS
     } %>
   <% end %>
-  <%= render partial: 'shared/webform/submit', locals: {form: helper} %>
+  <%= render partial: 'shared/webform/submit', locals: {
+    action: :create,
+    form: helper
+  } %>
 <% end %>

@@ -1,3 +1,9 @@
+<%#
+Local variables
+---------------
+form: Form object
+%>
 <div class="page-header">
-  <h1><%= link_to @form.form_title, @form, class: "text-muted" %></h1>
+  <% form = local_assigns[:form] || @form %>
+  <h1><%= link_to form.form_title, form, class: "text-muted" %></h1>
 </div>

@@ -1,6 +1,17 @@
 <%#
 Local variables
 ---------------
+action: :create or :update
 form: form_for helper
 %>
-<%= form.submit "Add #{form.object.class.human_name}", class: "btn btn-success" %>
+<% case action %>
+<% when :create %>
+  <% button_action = 'Add' %>
+  <% klass = "btn btn-success" %>
+<% when :update %>
+  <% button_action = 'Update' %>
+  <% klass = "btn btn-warning" %>
+<% else %>
+  <% raise 'unknown action' %>
+<% end %>
+<%= form.submit "#{button_action} #{form.object.class.human_name}", class: klass %>

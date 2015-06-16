@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
   get 'forms/:id/confirm-delete', to: 'forms#confirm_delete',
     as: :confirm_delete_form
-  resources :fields, only: [:destroy]
+  resources :fields, only: [:edit, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
