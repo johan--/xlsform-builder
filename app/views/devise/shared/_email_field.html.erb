@@ -1,0 +1,11 @@
+<%#
+Local variables
+---------------
+f: form_for helper
+%>
+<%= render partial: 'shared/webform/field', locals: {
+  form: f,
+  attribute: :email,
+  field: f.email_field(:email, autofocus: true, class: "form-control"),
+  columns: 4
+} %>
