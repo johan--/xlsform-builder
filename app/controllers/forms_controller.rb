@@ -23,6 +23,10 @@ class FormsController < ApplicationController
     end
   end
 
+  def index
+    @forms = Form.descending_update_time
+  end
+
   def destroy
     @form.destroy
     redirect_to root_path
