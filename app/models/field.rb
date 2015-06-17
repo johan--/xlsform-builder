@@ -1,7 +1,7 @@
 class Field < FormBuilder::Model
   TYPES = Set.new(['note', 'text'])
 
-  belongs_to :form
+  belongs_to :form, touch: true
   validates :form, presence: true
 
   validates :name, presence: true
@@ -22,6 +22,7 @@ class Field < FormBuilder::Model
   before_save :init_index
   private def init_index
     self.index = form.fields.size unless index
+    index
   end
 
   before_destroy :move_last
@@ -62,29 +63,29 @@ class Field < FormBuilder::Model
       save!
       swap.save!
     end
+    true
   end
 
   def move_up
-    return false if head?
-    swap_index previous_field
+    swap_index previous_field unless head?
     true
   end
 
   def move_down
-    return false if tail?
-    swap_index next_field
+    swap_index next_field unless tail?
     true
   end
 
   def move_last
-    return false if tail?
-    Field.transaction do
-      next_fields.each do |field|
-        field.index -= 1
-        field.save!
+    unless tail?
+      Field.transaction do
+        next_fields.each do |field|
+          field.index -= 1
+          field.save!
+        end
+        self.index = form.fields.size - 1
+        save!
       end
-      self.index = form.fields.size - 1
-      save!
     end
     true
   end
