@@ -4,13 +4,8 @@ class FormsController < ApplicationController
 
   EDITABLE_ATTRIBUTES = [:form_title]
 
-  private def init_webform(xlsform)
-    @form = xlsform
-    @attributes = EDITABLE_ATTRIBUTES
-  end
-
   def new
-    init_webform Form.new
+    @form = Form.new
   end
 
   def create
@@ -18,7 +13,7 @@ class FormsController < ApplicationController
     if form.save
       redirect_to form
     else
-      init_webform form
+      @form = form
       render 'new'
     end
   end
