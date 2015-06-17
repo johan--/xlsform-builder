@@ -19,3 +19,4 @@ form.fields = Field.create([
     label: 'No user input: explanation only.'
   }
 ])
+form.save
