@@ -1,4 +1,5 @@
 class FormsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_form, only: [:show, :confirm_delete, :destroy]
 
   EDITABLE_ATTRIBUTES = [:form_title]
