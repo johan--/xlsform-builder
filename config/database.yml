@@ -24,6 +24,8 @@ default: &default
 development:
   <<: *default
   database: XLSFormBuilder_development
+  username: user_name
+  password:
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
