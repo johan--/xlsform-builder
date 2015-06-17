@@ -1,29 +1,32 @@
-<h2>Sign up</h2>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <% email = {
+    partial: 'devise/shared/email_field',
+    locals: { f: f }
+  } %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <% post_label = if @minimum_password_length %>
+    <% "<em>(#{@minimum_password_length} characters minimum)</em>".html_safe %>
+  <% else %>
+    <% nil %>
+  <% end %>
+  <% password = {
+    partial: 'devise/shared/password_field', locals: {
+      f: f,
+      attribute: :password,
+      post_label: post_label
+    }
+  } %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+  <% password_confirmation = {
+    partial: 'devise/shared/password_field', locals: {
+      f: f,
+      attribute: :password_confirmation
+    }
+  } %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+  <%= render partial: 'devise/shared/sign_in', locals: {
+    action: 'Sign up',
+    f: f,
+    partials: [email, password, password_confirmation]
+  } %>
 <% end %>
-
-<%= render "devise/shared/links" %>
