@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'forms/:id/confirm-delete', to: 'forms#confirm_delete',
     as: :confirm_delete_form
   resources :fields, only: [:edit, :update, :destroy]
+  get 'fields/:id/move-up',   to: 'fields#move_up',   as: :move_up_field
+  get 'fields/:id/move-down', to: 'fields#move_down', as: :move_down_field
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

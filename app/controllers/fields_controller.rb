@@ -1,5 +1,6 @@
 class FieldsController < ApplicationController
-  before_action :set_field, only: [:edit, :update, :destroy]
+  before_action :set_field,
+    only: [:edit, :update, :destroy, :move_up, :move_down]
 
   def new
     @field = Field.new(form_param)
@@ -27,6 +28,16 @@ class FieldsController < ApplicationController
     form = @field.form
     @field.destroy
     redirect_to form
+  end
+
+  def move_up
+    @field.move_up
+    redirect_to @field.form
+  end
+
+  def move_down
+    @field.move_down
+    redirect_to @field.form
   end
 
   private

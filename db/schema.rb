@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150614012955) do
+ActiveRecord::Schema.define(version: 20150616031424) do
 
   create_table "fields", force: :cascade do |t|
     t.text     "odk_type"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150614012955) do
     t.integer  "form_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "index"
   end
 
   create_table "forms", force: :cascade do |t|
