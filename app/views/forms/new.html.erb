@@ -1,7 +1,7 @@
 <%= render partial: 'shared/webform/errors', locals: {target: @form} %>
 
 <%= form_for @form do |helper| %>
-  <% @attributes.each do |attrib| %>
+  <% FormsController::EDITABLE_ATTRIBUTES.each do |attrib| %>
     <%= render partial: 'shared/webform/text_field', locals: {
       form: helper,
       attribute: attrib,

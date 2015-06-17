@@ -1,0 +1,19 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <% email = {
+    partial: 'devise/shared/email_field',
+    locals: { f: f }
+  } %>
+
+  <% password = {
+    partial: 'devise/shared/password_field', locals: {
+      f: f,
+      attribute: :password
+    }
+  } %>
+
+  <%= render partial: 'devise/shared/sign_in', locals: {
+    action: 'Log in',
+    f: f,
+    partials: [email, password]
+  } %>
+<% end %>

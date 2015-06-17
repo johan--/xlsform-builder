@@ -1,0 +1,25 @@
+<%#
+Local variables
+---------------
+action: sign-in action ('Sign up' or 'Log in')
+f: form_for helper
+partials: field partials to render in the body of the page
+%>
+<div class="page-header">
+  <h1><%= action %></h1>
+</div>
+
+<% errors = devise_error_messages! %>
+<% errors << '<br />'.html_safe unless errors == '' %>
+<%= errors %>
+
+<% partials.each do |partial| %>
+  <%= render partial %>
+<% end %>
+
+<div class="actions">
+  <%= f.submit action, class: "btn btn-primary" %>
+</div>
+
+<br />
+<%= render "devise/shared/links" %>

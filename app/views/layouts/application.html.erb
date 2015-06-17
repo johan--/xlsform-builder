@@ -19,6 +19,22 @@
       </button>
       <%= link_to 'XLSForm Builder', root_path, class: "navbar-brand" %>
     </div>
+    <div class="collapse navbar-collapse">
+      <% if user_signed_in? %>
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'My forms', forms_path %></li>
+        </ul>
+      <% end %>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <% if user_signed_in? %>
+            <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to 'Sign in', new_user_session_path %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 

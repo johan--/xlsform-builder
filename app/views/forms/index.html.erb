@@ -1,0 +1,15 @@
+<p><%= link_to 'Add a new form', new_form_path, class: "btn btn-success btn-lg", role: :button %></p>
+<br />
+
+<div class="list-group">
+  <% @forms.each do |form| %>
+    <div class="row">
+      <div class="col-md-<%= Form::TITLE_COLUMNS %>">
+        <%= link_to form.form_title, form, class: "list-group-item" %>
+      </div>
+      <div class="col-md-1">
+        <%= link_to 'Delete', confirm_delete_form_path(form), class: "btn btn-danger", role: :button %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'welcome#index'
 
-  resources :forms, only: [:new, :create, :show, :destroy] do
+  resources :forms, only: [:new, :create, :index, :show, :destroy] do
     resources :fields, only: [:new, :create]
   end
   get 'forms/:id/confirm-delete', to: 'forms#confirm_delete',

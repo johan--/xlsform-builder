@@ -1,25 +1,26 @@
 class FormsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_form, only: [:show, :confirm_delete, :destroy]
 
   EDITABLE_ATTRIBUTES = [:form_title]
 
-  private def init_webform(xlsform)
-    @form = xlsform
-    @attributes = EDITABLE_ATTRIBUTES
-  end
-
   def new
-    init_webform Form.new
+    @form = Form.new
   end
 
   def create
     form = Form.new(safe_params)
+    form.user = current_user
     if form.save
       redirect_to form
     else
-      init_webform form
+      @form = form
       render 'new'
     end
+  end
+
+  def index
+    @forms = Form.of_user(current_user).descending_update_time
   end
 
   def destroy
@@ -28,8 +29,13 @@ class FormsController < ApplicationController
   end
 
   private
+  def validate_user
+    redirect_to root_path if @form.user != current_user
+  end
+
   def set_form
     @form = Form.find(params[:id])
+    validate_user
   end
 
   def safe_params

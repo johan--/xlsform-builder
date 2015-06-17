@@ -1,15 +1,18 @@
-<p><%= link_to 'Add a new form', new_form_path, class: "btn btn-success btn-lg", role: :button %></p>
-<br />
+<div class="jumbotron">
+  <h1>Build XLSForms <em>faster</em></h1>
 
-<div class="list-group">
-  <% @forms.each do |form| %>
-    <div class="row">
-      <div class="col-md-<%= Form::TITLE_COLUMNS %>">
-        <%= link_to form.form_title, form, class: "list-group-item" %>
-      </div>
-      <div class="col-md-1">
-        <%= link_to 'Delete', confirm_delete_form_path(form), class: "btn btn-danger", role: :button %>
-      </div>
-    </div>
-  <% end %>
+  <p><%= link_to 'OpenDataKit', 'https://opendatakit.org/' %> allows you to program surveys for computer-assisted interviewing.</p>
+
+  <p>Create those surveys faster with XLSForm Builder. With Builder, you can design your surveys interactively, then download them as <%= link_to 'XLSForms', 'https://opendatakit.org/use/xlsform/' %>.</p>
+
+  <p>
+    <% if user_signed_in? %>
+      <% action = 'View your forms' %>
+      <% path = forms_path %>
+    <% else %>
+      <% action = 'Sign up' %>
+      <% path = new_user_session_path %>
+    <% end %>
+    <%= link_to action, path, class: "btn btn-primary btn-lg", role: :button %>
+  </p>
 </div>
