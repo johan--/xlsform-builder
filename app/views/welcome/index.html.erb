@@ -1,1 +1,18 @@
-<h1>TODO</h1>
+<div class="jumbotron">
+  <h1>Build XLSForms <em>faster</em></h1>
+
+  <p><%= link_to 'OpenDataKit', 'https://opendatakit.org/' %> allows you to program surveys for computer-assisted interviewing.</p>
+
+  <p>Create those surveys faster with XLSForm Builder. With Builder, you can design your surveys interactively, then download them as <%= link_to 'XLSForms', 'https://opendatakit.org/use/xlsform/' %>.</p>
+
+  <p>
+    <% if user_signed_in? %>
+      <% action = 'View your forms' %>
+      <% path = forms_path %>
+    <% else %>
+      <% action = 'Sign up' %>
+      <% path = new_user_session_path %>
+    <% end %>
+    <%= link_to action, path, class: "btn btn-primary btn-lg", role: :button %>
+  </p>
+</div>
