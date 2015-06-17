@@ -10,6 +10,7 @@ class FormsController < ApplicationController
 
   def create
     form = Form.new(safe_params)
+    form.user = current_user
     if form.save
       redirect_to form
     else
@@ -19,7 +20,7 @@ class FormsController < ApplicationController
   end
 
   def index
-    @forms = Form.descending_update_time
+    @forms = Form.of_user(current_user).descending_update_time
   end
 
   def destroy
@@ -28,8 +29,13 @@ class FormsController < ApplicationController
   end
 
   private
+  def validate_user
+    redirect_to root_path if @form.user != current_user
+  end
+
   def set_form
     @form = Form.find(params[:id])
+    validate_user
   end
 
   def safe_params
