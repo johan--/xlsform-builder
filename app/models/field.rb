@@ -1,5 +1,5 @@
 class Field < FormBuilder::Model
-  TYPES = Set.new(['note', 'text'])
+  TYPES = Set.new(['integer', 'text', 'note'])
 
   belongs_to :form, touch: true
   validates :form, presence: true
