@@ -1,29 +1,42 @@
-<h2>Sign up</h2>
+<div class="page-header">
+  <h1>Sign up</h1>
+</div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <%= render partial: 'shared/webform/field', locals: {
+    form: f,
+    attribute: :email,
+    field: f.email_field(:email, autofocus: true, class: "form-control"),
+    columns: 4
+  } %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+  <% post_label = if @minimum_password_length %>
+    <% "<em>(#{@minimum_password_length} characters minimum)</em>".html_safe %>
+  <% else %>
+    <% nil %>
+  <% end %>
+  <% password_columns = 3 %>
+  <%= render partial: 'shared/webform/field', locals: {
+    form: f,
+    attribute: :password,
+    field: f.password_field(:password, autocomplete: "off", class: "form-control"),
+    post_label: post_label,
+    columns: password_columns
+  } %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+  <%= render partial: 'shared/webform/field', locals: {
+    form: f,
+    attribute: :password_confirmation,
+    field: f.password_field(:password_confirmation, autocomplete: "off", class: "form-control"),
+    columns: password_columns
+  } %>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: "btn btn-primary" %>
   </div>
 <% end %>
 
+<br />
 <%= render "devise/shared/links" %>
