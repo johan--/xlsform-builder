@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'welcome#index'
 
   resources :forms, only: [:new, :create, :show, :destroy] do
