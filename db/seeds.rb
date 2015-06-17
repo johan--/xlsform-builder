@@ -15,8 +15,13 @@ form.fields = Field.create([
   },
   {
     odk_type: 'note',
-    name: 'my_note',
-    label: 'No user input: explanation only.'
+    name: 'one_note',
+    label: 'No user input: remarks only.'
+  },
+  {
+    odk_type: 'integer',
+    name: 'an_integer',
+    label: 'Enter an integer:'
   }
 ])
 form.save
