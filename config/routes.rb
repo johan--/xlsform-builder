@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   get 'forms/:id/confirm-delete', to: 'forms#confirm_delete',
     as: :confirm_delete_form
+  get 'forms/:id/download', to: 'forms#download', as: :download_form
   resources :fields, only: [:edit, :update, :destroy]
   get 'fields/:id/move-up',   to: 'fields#move_up',   as: :move_up_field
   get 'fields/:id/move-down', to: 'fields#move_down', as: :move_down_field
