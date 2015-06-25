@@ -1,6 +1,10 @@
 <%= render 'form_title' %>
 
-<p><%= link_to 'Add a new field', new_form_field_path(@form), class: "btn btn-success", role: :button %></p>
+<p>
+  <%= link_to 'Add a new field',  new_form_field_path(@form), class: "btn btn-success", role: :button %>
+  &nbsp;
+  <%= link_to 'Download XLSForm', download_form_path(@form),  class: "btn btn-default", role: :button %>
+</p>
 <br />
 
 <% @form.fields_by_index.each do |field| %>
